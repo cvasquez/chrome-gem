@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #F0F3F5;
+        font-family: 'Source Sans Pro', helvetica, arial, sans-serif;
+        font-size: 14px;
+        margin: 0;
+        padding: 20px 10px;
+        width: 360px;
+      }
+
+      .btns {
+        display: block;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+
+      .btn {
+        background: #F36C49;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 4px;
+        padding: 3px 9px;
+      }
+
+      #settingControl {
+        display: block;
+        text-align: center;
+        text-decoration: underline;
+      }
+
+      #settingControl span {
+        border-radius: 3px 3px 0 0;
+        display: block;
+        padding: 3px;
+      }
+
+      #settingControl span.active {
+        background-color: #DDDDDD;
+      }
+
+      #settings {
+        background: #FBFBFB;
+      }
+
+      .alignments,
+      .positions,
+      .sizes {
+        padding: 10px;
+        text-align: center;
+      }
+
+      .alignment,
+      .position,
+      .size {
+        display: inline-block;
+        margin: 0 10px;
+      }
+    </style>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/medium-editor.min.js"></script>
+    <script src="js/popup.js"></script>
+
+    <link rel="stylesheet" href="css/medium-editor.min.css">
+    <link rel="stylesheet" href="css/themes/beagle.min.css">
+  </head>
+
+  <body>
+    <div class="btns">
+      <div id="copyHTML" class="btn copyHTML">
+        Copy HTML
+      </div>
+      <div id="copyGmail" class="btn copyGmail">
+        Copy for Gmail
+      </div>
+    </div>
+
+    <div id="settingControl">
+      <span>Settings</span>
+    </div>
+
+    <div id="settings" style="display: none;">
+      <form class="alignments">
+        <strong>Align Card:</strong>
+        <div class="alignment">
+          <input id="leftAlign" data-align="left" type="radio" name="alignment" value="leftAlign">
+          <label for="leftAlign">Left</label>
+        </div>
+        <div class="alignment">
+          <input id="centerAlign" data-align="center" type="radio" name="alignment" value="centerAlign" checked>
+          <label for="centerAlign">Center</label>
+        </div>
+      </form>
+
+      <form class="positions">
+        <strong>Position Image:</strong>
+        <div class="position">
+          <input id="topPos" data-pos="top" type="radio" name="position" value="topPos">
+          <label for="topPos">Top</label>
+        </div>
+        <div class="position">
+          <input id="centerPos" data-pos="center" type="radio" name="position" value="centerPos" checked>
+          <label for="centerPos">Center</label>
+        </div>
+      </form>
+
+      <form class="sizes">
+        <strong>Position Image:</strong>
+        <div class="size">
+          <input id="contain" data-size="contain" type="radio" name="size" value="contain">
+          <label for="contain">Contain</label>
+        </div>
+        <div class="size">
+          <input id="cover" data-size="cover" type="radio" name="size" value="cover" checked>
+          <label for="cover">Cover</label>
+        </div>
+      </form>
+    </div>
+
+    <div id="gem" style="box-sizing: border-box; margin-top: 10px;">
+      <div style="width: 100%; max-width: 600px; box-sizing: border-box;">
+
+        <table cellpadding="0" cellspacing="0" id="card" style="box-sizing: border-box; background: #ffffff; border: 1px solid #CCCCCC; border-radius: 8px; margin: 0 auto; width: 300px; max-width: 100%;">
+          <thead style="box-sizing: border-box;">
+            <tr style="box-sizing: border-box;">
+              <th style="box-sizing: border-box;padding: 0;">
+                <div id="image" style="box-sizing: border-box;padding: 0;"></div>
+                <!--[if gte mso 9]>
+                  <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:300px;height:169px;">
+                    <v:fill type="tile" src="" color="#CCCCCC" />
+                    <v:textbox inset="0,0,0,0">
+                    </v:textbox>
+                  </v:rect>
+                <![endif]-->
+              </th>
+            </tr>
+          </thead>
+
+          <tbody style="box-sizing: border-box; display: block;">
+            <tr style="box-sizing: border-box;">
+              <td class="editable" style="box-sizing: border-box; word-wrap: break-word; min-height: 30px; padding:12px 18px 0px;">
+                <a id="title" href="#" style="color: #3F505A; display: block; font-size: 16px; font-weight: bold; margin-bottom: 9px; text-decoration: none; text-align: left;"></a>
+              </td>
+            </tr>
+            <tr style="box-sizing: border-box;">
+              <td id="description" class="editable" style="box-sizing: border-box; word-wrap: break-word; min-height: 30px;padding: 0px 18px 18px; color: #698596; text-align: left;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
