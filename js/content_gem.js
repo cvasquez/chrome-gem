@@ -9,6 +9,9 @@ chrome.runtime.sendMessage({
 chrome.runtime.onMessage.addListener(function (msg, sender, response) {
   // First, validate the message's structure
   if ((msg.from === 'popup') && (msg.subject === 'DOMInfo')) {
+
+    var isYouTube = isYouTube(document.URL);
+
     var ogTitle =       document.querySelector('meta[property="og:title"]'),
         title =         document.getElementsByTagName('title')[0],
         ogDescription = document.querySelector('meta[property="og:description"]'),
@@ -27,11 +30,21 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
       description:  ogDescription  != null ? ogDescription.content : (description != null ? description.content : null),
       url:          document.URL,
       ogType:       ogType !=null ? ogType.content : null,
-      image:        ogImage != null ? ogImage.content : (image != null ? image.src : null)
+      image:        ogImage != null ? ogImage.content : (isYouTube != false ? isYouTube : (image != null ? image.src : null))
     };
 
     // Directly respond to the sender (popup),
     // through the specified callback */
     response(domInfo);
+  }
+
+  // Detect if the URL is a YouTube video
+  function isYouTube(url){
+    var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    var matches = url.match(p);
+    if(matches){
+      return 'http://img.youtube.com/vi/' + matches[1] + '/sddefault.jpg';
+    }
+    return false;
   }
 });

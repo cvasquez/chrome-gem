@@ -5,6 +5,8 @@ function setDOMInfo(info) {
   document.getElementById('title').href               = info.url;
   document.getElementById('image').innerHTML          = '<a href="' + info.url + '"><div style="background-image: url(\'' + info.image + '\'); background-size: cover; background-repeat: no-repeat; background-position: center; width: 300px; height: 169px; border-radius: 8px 8px 0 0;" /></div></a>';
   document.getElementById('description').textContent  = info.description;
+  
+  console.log(info.isYouTube);
 }
 
 window.addEventListener('DOMContentLoaded', function () {
