@@ -1,13 +1,14 @@
 {
   "manifest_version": 2,
 
-  "name": "Email Gems - Content Script",
+  "name": "Email Gems",
   "description": "Create embeddable snippets for email based on the page you're viewing.",
-  "version": "1.0",
+  "version": "0.1",
   "offline_enabled": true,
 
   "browser_action": {
     "default_icon": "images/icon.png",
+    "default_title": "Gemify!",
     "default_popup": "popup.html"
   },
 
