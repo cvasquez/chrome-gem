@@ -4,9 +4,7 @@ function setDOMInfo(info) {
   document.getElementById('title').text               = info.title;
   document.getElementById('title').href               = info.url;
   document.getElementById('image').innerHTML          = '<a href="' + info.url + '"><div style="background-image: url(\'' + info.image + '\'); background-size: cover; background-repeat: no-repeat; background-position: center; width: 300px; height: 169px; border-radius: 8px 8px 0 0;" /></div></a>';
-  document.getElementById('description').textContent  = info.description;
-  
-  console.log(info.isYouTube);
+  info.description !=null ? document.getElementById('description').textContent = info.description : document.getElementById('description').outerHTML = '';
 }
 
 window.addEventListener('DOMContentLoaded', function () {
