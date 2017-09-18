@@ -54,14 +54,16 @@
 
       .alignments,
       .positions,
-      .sizes {
+      .sizes,
+      .imageStatuses {
         padding: 10px;
         text-align: center;
       }
 
       .alignment,
       .position,
-      .size {
+      .size,
+      .imageStatus {
         display: inline-block;
         margin: 0 10px;
       }
@@ -122,6 +124,18 @@
         <div class="size">
           <input id="cover" data-size="cover" type="radio" name="size" value="cover" checked>
           <label for="cover">Cover</label>
+        </div>
+      </form>
+
+      <form class="imageStatuses">
+        <strong>Show image:</strong>
+        <div class="imageStatus">
+          <input id="imageNo" data-image="no" type="radio" name="image" value="imageNo">
+          <label for="imageNo">No</label>
+        </div>
+        <div class="imageStatus">
+          <input id="imageYes" data-image="yes" type="radio" name="image" value="imageYes" checked>
+          <label for="imageYes">Yes</label>
         </div>
       </form>
     </div>

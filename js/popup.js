@@ -1,9 +1,13 @@
+var imageURL;
+
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
   // document.getElementById('title').innerHTML          = '<a href="' + info.url + '" class="color: #3F505A; display: block; font-size: 16px; font-weight: bold; margin-bottom: 9px; text-decoration: none;">' + info.title + '</a>';
+  imgURL = info.image;
+
   document.getElementById('title').text               = info.title;
   document.getElementById('title').href               = info.url;
-  document.getElementById('image').innerHTML          = '<a href="' + info.url + '"><div style="background-image: url(\'' + info.image + '\'); background-size: cover; background-repeat: no-repeat; background-position: center; width: 300px; height: 169px; border-radius: 8px 8px 0 0;" /></div></a>';
+  document.getElementById('image').innerHTML          = '<a href="' + info.url + '"><div style="background-image: url(\'' + imgURL + '\'); background-size: cover; background-repeat: no-repeat; background-position: center; width: 300px; height: 169px; border-radius: 8px 8px 0 0;" /></div></a>';
   info.description !=null ? document.getElementById('description').textContent = info.description : document.getElementById('description').outerHTML = '';
 }
 
@@ -72,11 +76,20 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('contain').onclick = function(){
     size(this);
   }
+
+  // Set image status (off or on)
+  document.getElementById('imageNo').onclick = function(){
+    imageStatus(this);
+  }
+  document.getElementById('imageYes').onclick = function(){
+    imageStatus(this);
+  }
 });
 
 function alignment(el) {
   var alignment = el.getAttribute('data-align'),
       card = document.getElementById('card');
+
   if(alignment === 'left') {
     card.style.margin = '0' ;
   } else if(alignment === 'center') {
@@ -87,6 +100,7 @@ function alignment(el) {
 function position(el) {
   var position = el.getAttribute('data-pos'),
       image = document.getElementById('image');
+
   if(position === 'top') {
     image.getElementsByTagName('div')[0].style.backgroundPosition = 'top center';
   } else if(position === 'center') {
@@ -98,10 +112,22 @@ function size(el) {
   var size = el.getAttribute('data-size'),
       image = document.getElementById('image');
 
-      console.log(size);
   if(size === 'cover') {
     image.getElementsByTagName('div')[0].style.backgroundSize = 'cover';
   } else if(size === 'contain') {
     image.getElementsByTagName('div')[0].style.backgroundSize = 'contain';
+  }
+}
+
+function imageStatus(el) {
+  var status = el.getAttribute('data-image'),
+      image = document.getElementById('image');
+
+  if(status === 'yes') {
+    image.getElementsByTagName('div')[0].style.height = '169px';
+    image.getElementsByTagName('div')[0].style.backgroundImage = 'url(\'' + imgURL + '\')';
+  } else if(status === 'no') {
+    image.getElementsByTagName('div')[0].style.height = '0';
+    image.getElementsByTagName('div')[0].style.backgroundImage = 'none';
   }
 }
