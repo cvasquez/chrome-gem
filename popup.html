@@ -11,6 +11,7 @@
         background: #F0F3F5;
         font-family: 'Source Sans Pro', helvetica, arial, sans-serif;
         font-size: 14px;
+        height: 100%;
         margin: 0;
         padding: 20px 10px;
         width: 360px;
@@ -24,12 +25,20 @@
 
       .btn {
         background: #F36C49;
+        border-bottom: 2px solid #d16245;
         border-radius: 6px;
         color: white;
         cursor: pointer;
         display: inline-block;
         margin: 0 4px;
         padding: 3px 9px;
+        transition-duration: 0.15s;
+      }
+
+      .btn:active {
+        transform: translate(0px,3px);
+        -webkit-transform: translate(0px,3px);
+        border-bottom: 1px solid;
       }
 
       #settingControl {
@@ -50,6 +59,18 @@
 
       #settings {
         background: #FBFBFB;
+      }
+
+      .overlay {
+        align-items: center;
+        display: none;
+        height: 100%;
+        justify-content: center;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
       }
 
       .alignments,

@@ -42,6 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('copyGmail').addEventListener('click', function(e){
     var copyGmail = new Clipboard('.copyGmail', {
       target: function() {
+        feedback();
         return document.querySelector('#gem');
       }
     });
@@ -84,6 +85,8 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('imageYes').onclick = function(){
     imageStatus(this);
   }
+
+  document.getElementsByTagName("body")[0].style.height = '100%';
 });
 
 function alignment(el) {
