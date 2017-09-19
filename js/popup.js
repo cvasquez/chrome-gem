@@ -42,7 +42,6 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('copyGmail').addEventListener('click', function(e){
     var copyGmail = new Clipboard('.copyGmail', {
       target: function() {
-        feedback();
         return document.querySelector('#gem');
       }
     });

@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
         description =   document.querySelector('meta[name="description"]'),
         ogType =        document.querySelector('meta[property="og:type"]'),
         ogImage =       document.querySelector('meta[property="og:image"]'),
+        twitImage =     document.querySelector('meta[property="twitter:image"]'),
         image =         document.getElementsByTagName('img')[0].width > 400 ? document.getElementsByTagName('img')[0] : document.getElementsByTagName('img')[1];
 
     // @TODO find image at least 300px wide
@@ -30,7 +31,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
       description:  ogDescription  != null ? ogDescription.content : (description != null ? description.content : null),
       url:          document.URL,
       ogType:       ogType !=null ? ogType.content : null,
-      image:        ogImage != null ? ogImage.content : (isYouTube != false ? isYouTube : (image != null ? image.src : null))
+      image:        ogImage != null ? ogImage.content : (twitImage != null ? twitImage : (isYouTube != false ? isYouTube : (image != null ? image.src : null)))
     };
 
     // Directly respond to the sender (popup),
