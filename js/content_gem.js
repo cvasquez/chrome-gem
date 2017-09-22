@@ -19,6 +19,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
         ogType =        document.querySelector('meta[property="og:type"]'),
         ogImage =       document.querySelector('meta[property="og:image"]'),
         twitImage =     document.querySelector('meta[property="twitter:image"]'),
+        siteName =      document.querySelector('meta[property="og:site_name"]'),
         image =         document.getElementsByTagName('img')[0].width > 400 ? document.getElementsByTagName('img')[0] : document.getElementsByTagName('img')[1];
 
     // @TODO find image at least 300px wide
@@ -30,6 +31,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
       title:        ogTitle != null ? ogTitle.content : title.innerText,
       description:  ogDescription  != null ? ogDescription.content : (description != null ? description.content : null),
       url:          document.URL,
+      siteName:     siteName != null ? siteName.content : null,
       ogType:       ogType !=null ? ogType.content : null,
       image:        ogImage != null ? ogImage.content : (twitImage != null ? twitImage : (isYouTube != false ? isYouTube : (image != null ? image.src : null)))
     };
