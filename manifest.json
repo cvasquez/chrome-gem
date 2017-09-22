@@ -17,13 +17,17 @@
     "scripts": ["js/background.js"]
   },
 
+  "permissions": [
+    "storage"
+  ],
+
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["js/content_gem.js"]
     },
     {
-      "matches": ["http://www.aweber.com/users/messages/edit/*"],
+      "matches": ["http://www.aweber.com/users/messages/edit/*", "https://blog.aweber.com/email-marketing/color-theory-for-sign-up-form-design.htm"],
       "js": ["js/message_editor.js"]
     }
   ]
