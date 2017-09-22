@@ -10,6 +10,19 @@ function setDOMInfo(info) {
   document.getElementById('url').textContent          = info.siteName !=null ? info.siteName : document.getElementById('url').outerHTML = '';
   document.getElementById('image').innerHTML          = '<a href="' + info.url + '"><div style="background-image: url(\'' + imgURL + '\'); background-size: cover; background-repeat: no-repeat; background-position: center; width: 300px; height: 169px; border-radius: 8px 8px 0 0;" /></div></a>';
   info.description !=null ? document.getElementById('description').textContent = info.description : document.getElementById('description').outerHTML = '';
+
+  // Store Objects https://stackoverflow.com/questions/16605706/store-an-array-with-chrome-storage-local
+  chrome.storage.sync.set({'userKeyIds': [{
+      'title':        info.title,
+      'description':  info.description,
+      'url':          info.url,
+      'siteName':     info.siteName,
+      'ogType':       info.ogType
+    }]}, function(){
+    chrome.storage.sync.get('userKeyIds', function(data){
+      console.log(data.userKeyIds[0]);
+    });
+  });
 }
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -88,6 +101,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   document.getElementsByTagName("body")[0].style.height = '100%';
 });
+
 
 function alignment(el) {
   var alignment = el.getAttribute('data-align'),
