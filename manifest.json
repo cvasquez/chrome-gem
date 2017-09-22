@@ -21,6 +21,10 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["js/content_gem.js"]
+    },
+    {
+      "matches": ["http://www.aweber.com/users/messages/edit/*"],
+      "js": ["js/message_editor.js"]
     }
   ]
 }
