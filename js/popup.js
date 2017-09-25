@@ -12,15 +12,42 @@ function setDOMInfo(info) {
   info.description !=null ? document.getElementById('description').textContent = info.description : document.getElementById('description').outerHTML = '';
 
   // Store Objects https://stackoverflow.com/questions/16605706/store-an-array-with-chrome-storage-local
-  chrome.storage.sync.set({'userKeyIds': [{
-      'title':        info.title,
-      'description':  info.description,
-      'url':          info.url,
-      'siteName':     info.siteName,
-      'ogType':       info.ogType
-    }]}, function(){
-    chrome.storage.sync.get('userKeyIds', function(data){
-      console.log(data.userKeyIds[0]);
+  // chrome.storage.local.get(function(result){console.log(result)})
+  // Todo app with angular http://jslancer.com/blog/2016/01/16/make-a-todo-chrome-extension-with-angularjs/
+  // Chrome extension from scratch: https://scotch.io/@jibolash/build-a-chrome-extension-from-scratch
+  // https://stackoverflow.com/questions/27879835/adding-new-objects-to-chrome-local-storage
+
+  chrome.storage.sync.get(function(items) {
+    console.log(items.awgems);
+    
+    if (Object.keys(items).length > 0 && items.awgems) {
+      for(var i = 0; i < items.awgems.length; i++) {
+        if(items.awgems[i].url == info.url) {
+          console.log('This page already exists in your hopper.')
+          return
+        }
+      }
+      items.awgems.push({
+        'title':        info.title,
+        'description':  info.description,
+        'url':          info.url,
+        'siteName':     info.siteName,
+        'ogType':       info.ogType,
+        'image':        info.image
+      });
+    } else {
+      items.awgems = [{
+        'title':        info.title,
+        'description':  info.description,
+        'url':          info.url,
+        'siteName':     info.siteName,
+        'ogType':       info.ogType,
+        'image':        info.image
+      }];
+    };
+
+    chrome.storage.sync.set(items, function() {
+        console.log('Data successfully saved to the storage!');
     });
   });
 }
