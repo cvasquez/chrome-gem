@@ -4,7 +4,7 @@ var elemDiv = document.createElement('div'),
 // Create element for holding saved pages in AWeber message editor
 elemDiv.id = "testChromeID";
 elemDiv.style.cssText = 'position:absolute; left: 0; top: 0; height: auto; width: 300px; z-index: 5000; background-color: red;';
-document.body.appendChild(elemDiv);
+// document.body.appendChild(elemDiv); <- DISABLED SO I DON'T KEEP POPPING UP THE ANNOYING RED BOX
 
 // Add items from storage into element
 chrome.storage.sync.get(function(items) {
